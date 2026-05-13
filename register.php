@@ -2,6 +2,9 @@
 session_start();
 require_once "config/database.php";
 
+$username = $password = $confirm_password = $full_name = $email = $role = $roll_number = $class = "";
+$username_err = $password_err = $confirm_password_err = $full_name_err = $email_err = $role_err = $roll_number_err = $class_err = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST["username"]);
     $password = trim($_POST["password"]);

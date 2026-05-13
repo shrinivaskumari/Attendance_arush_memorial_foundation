@@ -8,6 +8,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
 $username = $password = $role = "";
 $username_err = $password_err = $role_err = $login_err = "";
+$hashed_password = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty(trim($_POST["username"]))) {
@@ -37,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (mysqli_stmt_num_rows($stmt) == 1) {
                     mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $db_role);
                     if (mysqli_stmt_fetch($stmt)) {
-                        if (password_verify($password, $hashed_password)) {
+                        if (is_string($hashed_password) && password_verify($password, $hashed_password)) {
                             session_start();
                             $_SESSION["loggedin"] = true;
                             $_SESSION["user_id"] = $id;

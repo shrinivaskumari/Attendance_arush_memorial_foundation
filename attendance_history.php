@@ -27,6 +27,12 @@ if ($role === "student") {
 
 // Fetch attendance records
 $attendance_records = [];
+$class_groups = [
+    'Nursery' => [],
+    'LKG' => [],
+    'UKG' => [],
+    'Unknown' => []
+];
 if ($role === "teacher") {
     $sql = "SELECT a.date, a.status, s.full_name, s.roll_number, s.class, u.username as marked_by 
             FROM attendance a 
@@ -57,12 +63,6 @@ if ($role === "teacher") {
 
 // Group attendance records by class for teachers
 if ($role === "teacher") {
-    $class_groups = [
-        'Nursery' => [],
-        'LKG' => [],
-        'UKG' => [],
-        'Unknown' => []
-    ];
     foreach ($attendance_records as $row) {
         $class = in_array($row['class'], ['Nursery', 'LKG', 'UKG']) ? $row['class'] : 'Unknown';
         $class_groups[$class][] = $row;
