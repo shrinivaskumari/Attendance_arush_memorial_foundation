@@ -1,14 +1,16 @@
 <?php
 
-// define('DB_SERVER', 'sql106.infinityfree.com');
-// define('DB_USERNAME', 'if0_39205631');
-// define('DB_PASSWORD', 'aD6XgDViNNdHh');
-// define('DB_NAME', 'if0_39205631_attendance_system');
+// Database configuration
+// Prefer environment variables for production. If not provided, use the supplied hosting credentials.
+$db_server = getenv('DB_SERVER') ?: 'sql106.infinityfree.com';
+$db_username = getenv('DB_USERNAME') ?: 'if0_41911204';
+$db_password = getenv('DB_PASSWORD') ?: 'ip3iNOfI51ieJ1b';
+$db_name = getenv('DB_NAME') ?: 'if0_41911204_amf';
 
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'attendance_system');
+define('DB_SERVER', $db_server);
+define('DB_USERNAME', $db_username);
+define('DB_PASSWORD', $db_password);
+define('DB_NAME', $db_name);
 
 // Attempt to connect to MySQL database
 $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD,DB_NAME);
